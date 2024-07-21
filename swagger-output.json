@@ -1,0 +1,2016 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "AGENT STATS",
+    "description": "AGENT STATS STATUSES AND CHANNEL DATA"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    },
+    {
+      "url": "https://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "Endpoints"
+    },
+    {
+      "name": "AMI",
+      "description": "AMI apis to get current active stats"
+    }
+  ],
+  "paths": {
+    "/logger": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/": {
+      "post": {
+        "tags": [],
+        "description": "create new out dial jobs.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [],
+        "description": "all sip peers.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/user/{id}": {
+      "put": {
+        "tags": [],
+        "description": "update outbound job by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UpdateJob"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/user/token": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "Endpoint to sign in a specific user",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/sign-in": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "Endpoint to sign in a specific user",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/app/sign-in": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "Endpoint to sign in a specific user",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/dashboard/stats": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "Endpoint to sign in a specific user",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/job/upload-data": {
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "get jobs today",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "pause": {
+                    "type": "number"
+                  },
+                  "complete": {
+                    "type": "number"
+                  },
+                  "startTime": {
+                    "type": "string"
+                  },
+                  "endTime": {
+                    "type": "string"
+                  },
+                  "active": {
+                    "type": "number"
+                  },
+                  "queue": {
+                    "type": "string"
+                  },
+                  "concurrency": {
+                    "type": "number"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/job/": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "description": "create new out dial jobs.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateJob"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/{id}": {
+      "put": {
+        "tags": [
+          "Job"
+        ],
+        "description": "update outbound job by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "pause": {
+                    "type": "number"
+                  },
+                  "complete": {
+                    "type": "number"
+                  },
+                  "startTime": {
+                    "type": "string"
+                  },
+                  "endTime": {
+                    "type": "string"
+                  },
+                  "active": {
+                    "type": "number"
+                  },
+                  "queue": {
+                    "type": "string"
+                  },
+                  "concurrency": {
+                    "type": "number"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Job"
+        ],
+        "description": "update outbound job by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PatchJob"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/types": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/cdrs": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "description": "create new out dial jobs.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateJob"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/cdr-record/{id}": {
+      "delete": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/job-cdrs/{jobId}": {
+      "delete": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/inject": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inject"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/status/{id}": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inject"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/phone-call/{jobId}/{id}": {
+      "delete": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/job/inactive-job/{id}": {
+      "delete": {
+        "tags": [
+          "Job"
+        ],
+        "description": "all sip peers.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all sip peers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SipPeers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Parents": {
+        "type": "object",
+        "properties": {
+          "father": {
+            "type": "string",
+            "example": "Simon Doe"
+          },
+          "mother": {
+            "type": "string",
+            "example": "Marie Doe"
+          }
+        },
+        "xml": {
+          "name": "Parents"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Jhon Doe"
+          },
+          "age": {
+            "type": "number",
+            "example": 29
+          },
+          "parents": {
+            "xml": {
+              "name": "parents"
+            },
+            "$ref": "#/components/schemas/Parents"
+          },
+          "diplomas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "school": {
+                  "type": "string",
+                  "example": "XYZ University"
+                },
+                "year": {
+                  "type": "number",
+                  "example": 2020
+                },
+                "completed": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "internship": {
+                  "type": "object",
+                  "properties": {
+                    "hours": {
+                      "type": "number",
+                      "example": 290
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "XYZ Company"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "CreateUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123321"
+          }
+        },
+        "xml": {
+          "name": "CreateUser"
+        }
+      },
+      "CreateJob": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "test"
+          },
+          "type": {
+            "type": "string",
+            "example": "predictive"
+          },
+          "pause": {
+            "type": "number",
+            "example": 0
+          },
+          "complete": {
+            "type": "number",
+            "example": 0
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2022-08-10 20:00:00"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2022-08-10 23:00:00"
+          },
+          "jobData": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string",
+                  "example": "231203"
+                },
+                "mask": {
+                  "type": "string",
+                  "example": "123456"
+                },
+                "context": {
+                  "type": "string",
+                  "example": "default"
+                },
+                "trunk": {
+                  "type": "string",
+                  "example": "outgoing"
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "CreateJob"
+        }
+      },
+      "UpdateJob": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "test"
+          },
+          "type": {
+            "type": "string",
+            "example": "predictive"
+          },
+          "pause": {
+            "type": "number",
+            "example": 0
+          },
+          "complete": {
+            "type": "number",
+            "example": 0
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2022-08-10 20:00:00"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2022-08-10 23:00:00"
+          },
+          "jobData": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string",
+                  "example": "231203"
+                },
+                "mask": {
+                  "type": "string",
+                  "example": "123456"
+                },
+                "context": {
+                  "type": "string",
+                  "example": "default"
+                },
+                "trunk": {
+                  "type": "string",
+                  "example": "outgoing"
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "UpdateJob"
+        }
+      },
+      "Summary": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean",
+                "example": true
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "string",
+                      "example": "QueueSummary"
+                    },
+                    "queue": {
+                      "type": "string",
+                      "example": "sales"
+                    },
+                    "loggedin": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "available": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "callers": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "holdtime": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "talktime": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "longestholdtime": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "actionid": {
+                      "type": "string",
+                      "example": "1660287273579"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "Summary"
+        }
+      },
+      "Status": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean",
+                "example": true
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "string",
+                      "example": "QueueMember"
+                    },
+                    "queue": {
+                      "type": "string",
+                      "example": "sales"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "SIP/salman"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "SIP/salman"
+                    },
+                    "stateinterface": {
+                      "type": "string",
+                      "example": "SIP/salman"
+                    },
+                    "membership": {
+                      "type": "string",
+                      "example": "dynamic"
+                    },
+                    "penalty": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "callstaken": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "lastcall": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "lastpause": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "incall": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "5"
+                    },
+                    "paused": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "pausedreason": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "wrapuptime": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "actionid": {
+                      "type": "string",
+                      "example": "1660286739498"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "Status"
+        }
+      },
+      "SipPeers": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean",
+                "example": true
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "string",
+                      "example": "PeerEntry"
+                    },
+                    "actionid": {
+                      "type": "string",
+                      "example": "1660286907216"
+                    },
+                    "channeltype": {
+                      "type": "string",
+                      "example": "SIP"
+                    },
+                    "objectname": {
+                      "type": "string",
+                      "example": "salman"
+                    },
+                    "chanobjecttype": {
+                      "type": "string",
+                      "example": "peer"
+                    },
+                    "ipaddress": {
+                      "type": "string",
+                      "example": "-none-"
+                    },
+                    "ipport": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "dynamic": {
+                      "type": "string",
+                      "example": "yes"
+                    },
+                    "autoforcerport": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "forcerport": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "autocomedia": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "comedia": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "videosupport": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "textsupport": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "acl": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "UNKNOWN"
+                    },
+                    "realtimedevice": {
+                      "type": "string",
+                      "example": "no"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "accountcode": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "SipPeers"
+        }
+      },
+      "Pause": {
+        "type": "object",
+        "properties": {
+          "queues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "queue": {
+                  "type": "string",
+                  "example": "tenent1"
+                },
+                "reason": {
+                  "type": "string",
+                  "example": "some reason"
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "Pause"
+        }
+      },
+      "UnPause": {
+        "type": "object",
+        "properties": {
+          "queues": {
+            "type": "array",
+            "example": [
+              "tenent1",
+              "tenent2"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "xml": {
+          "name": "UnPause"
+        }
+      },
+      "PauseMemeber": {
+        "type": "object",
+        "properties": {
+          "queue": {
+            "type": "string",
+            "example": "tenent1"
+          },
+          "interface": {
+            "type": "string",
+            "example": "PJSIP/3000"
+          },
+          "reason": {
+            "type": "string",
+            "example": "some reason"
+          }
+        },
+        "xml": {
+          "name": "PauseMemeber"
+        }
+      },
+      "UnPauseMemeber": {
+        "type": "object",
+        "properties": {
+          "queue": {
+            "type": "string",
+            "example": "tenent1"
+          },
+          "interface": {
+            "type": "string",
+            "example": "PJSIP/3000"
+          }
+        },
+        "xml": {
+          "name": "UnPauseMemeber"
+        }
+      },
+      "Originate": {
+        "type": "object",
+        "properties": {
+          "trunk": {
+            "type": "string",
+            "example": "name of trunk"
+          },
+          "number": {
+            "type": "string",
+            "example": "777968656"
+          },
+          "context": {
+            "type": "string",
+            "example": "dafault"
+          },
+          "mask": {
+            "type": "string",
+            "example": "9898989"
+          },
+          "exten": {
+            "type": "string",
+            "example": "88856472"
+          }
+        },
+        "xml": {
+          "name": "Originate"
+        }
+      },
+      "AgentLogOut": {
+        "type": "object",
+        "properties": {
+          "interface": {
+            "type": "string",
+            "example": "pjsip/1001"
+          }
+        },
+        "xml": {
+          "name": "AgentLogOut"
+        }
+      },
+      "Spy": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "example": "only channel prfix like 6002 for PJSIP/6002-00000001 "
+          },
+          "number": {
+            "type": "string",
+            "example": "777968656"
+          },
+          "context": {
+            "type": "string",
+            "example": "dafault"
+          },
+          "mask": {
+            "type": "string",
+            "example": "9898989"
+          },
+          "exten": {
+            "type": "string",
+            "example": "88856472"
+          }
+        },
+        "xml": {
+          "name": "Spy"
+        }
+      },
+      "Redirect": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "example": "only channel prfix like 6002 for PJSIP/6002-00000001 "
+          },
+          "exten": {
+            "type": "string",
+            "example": "6666"
+          },
+          "context": {
+            "type": "string",
+            "example": "test"
+          },
+          "priority": {
+            "type": "string",
+            "example": "s"
+          },
+          "extraChannel": {
+            "type": "string",
+            "example": "channel extra"
+          }
+        },
+        "xml": {
+          "name": "Redirect"
+        }
+      },
+      "Bridge": {
+        "type": "object",
+        "properties": {
+          "channel1": {
+            "type": "string",
+            "example": "sample channel 1"
+          },
+          "channel2": {
+            "type": "string",
+            "example": "sample channel 2"
+          },
+          "tone": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "xml": {
+          "name": "Bridge"
+        }
+      },
+      "Barge": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "example": "only channel prfix like 6002 for PJSIP/6002-00000001 "
+          },
+          "number": {
+            "type": "string",
+            "example": "777968656"
+          },
+          "context": {
+            "type": "string",
+            "example": "dafault"
+          },
+          "mask": {
+            "type": "string",
+            "example": "9898989"
+          },
+          "exten": {
+            "type": "string",
+            "example": "88856472"
+          }
+        },
+        "xml": {
+          "name": "Barge"
+        }
+      },
+      "Channel": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean",
+                "example": true
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "string",
+                      "example": "CoreShowChannel"
+                    },
+                    "actionid": {
+                      "type": "string",
+                      "example": "1660287123427"
+                    },
+                    "channel": {
+                      "type": "string",
+                      "example": "SIP/server-00006a17"
+                    },
+                    "channelstate": {
+                      "type": "string",
+                      "example": "6"
+                    },
+                    "channelstatedesc": {
+                      "type": "string",
+                      "example": "Up"
+                    },
+                    "calleridnum": {
+                      "type": "string",
+                      "example": "3478349033"
+                    },
+                    "calleridname": {
+                      "type": "string",
+                      "example": "<unknown>"
+                    },
+                    "connectedlinenum": {
+                      "type": "string",
+                      "example": "<unknown>"
+                    },
+                    "connectedlinename": {
+                      "type": "string",
+                      "example": "<unknown>"
+                    },
+                    "language": {
+                      "type": "string",
+                      "example": "en"
+                    },
+                    "accountcode": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "context": {
+                      "type": "string",
+                      "example": "OFFER_SERVICE"
+                    },
+                    "exten": {
+                      "type": "string",
+                      "example": "s"
+                    },
+                    "priority": {
+                      "type": "string",
+                      "example": "9"
+                    },
+                    "uniqueid": {
+                      "type": "string",
+                      "example": "1660287120.27621"
+                    },
+                    "linkedid": {
+                      "type": "string",
+                      "example": "1660287120.27621"
+                    },
+                    "application": {
+                      "type": "string",
+                      "example": "BackGround"
+                    },
+                    "applicationdata": {
+                      "type": "string",
+                      "example": "/home/AUDIO/non_subscribers"
+                    },
+                    "duration": {
+                      "type": "string",
+                      "example": "00:00:03"
+                    },
+                    "bridgeid": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "Channel"
+        }
+      },
+      "AddUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "BEN@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "XYZ"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "AddUser"
+        }
+      },
+      "Authorized": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Successfully found"
+          }
+        },
+        "xml": {
+          "name": "Authorized"
+        }
+      },
+      "PatchJob": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "test"
+          },
+          "type": {
+            "type": "string",
+            "example": "predictive"
+          },
+          "pause": {
+            "type": "number",
+            "example": 0
+          },
+          "complete": {
+            "type": "number",
+            "example": 0
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2022-08-10 20:00:00"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2022-08-10 23:00:00"
+          }
+        },
+        "xml": {
+          "name": "PatchJob"
+        }
+      },
+      "Inject": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "example": "3466880042"
+          },
+          "mask": {
+            "type": "string",
+            "example": "4698818251"
+          },
+          "context": {
+            "type": "string",
+            "example": "from-trunk"
+          },
+          "trunk": {
+            "type": "string",
+            "example": "Out-Inov"
+          },
+          "exten": {
+            "type": "string",
+            "example": "14698818251"
+          },
+          "jobId": {
+            "type": "string",
+            "example": "1"
+          }
+        },
+        "xml": {
+          "name": "Inject"
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "any description..."
+      }
+    }
+  }
+}
